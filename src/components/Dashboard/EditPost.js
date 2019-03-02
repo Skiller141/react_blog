@@ -1,37 +1,33 @@
 import React, { Component } from 'react'
 
 export class EditPost extends Component {
-  state = {
-    title: 'default',
-    body: 'default',
-    img: 'default'
-  }
+  // state = {
+  //   title: 'default',
+  //   body: 'default',
+  //   img: 'default'
+  // }
 
   componentDidMount() {
     this.props.allPosts.forEach(post => {
-      if (post.url !== undefined) {
-        if (post.url.slice(7) === window.location.pathname.slice(16)) {
-          // this.props.editPost(post.id)
-          this.setState({ title: post.title, body: post.body, img: post.img })
-        }
+      if (post.title.replace(/ /g, '-').toLowerCase() === window.location.pathname.slice(16)) {
+        this.setState({ title: post.title, body: post.body, img: post.img })
       }
     })
-    console.log(this.props)
   }
-  
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    // console.log(this.state)
   }
   
   onSubmit = (e) => {
     e.preventDefault()
-    this.props.allPosts.forEach(post => {
-      if (post.url.slice(7) === window.location.pathname.slice(16)) {
-        this.props.editPost(this.state)
-        // console.log(post)
-      }
-    })
+    this.props.editPost(this.state)
+    // this.props.allPosts.forEach(post => {
+    //   if (post.url.slice(7) === window.location.pathname.slice(16)) {
+    //     this.props.editPost(this.state)
+    //     // console.log(post)
+    //   }
+    // })
   }
 
   render() {

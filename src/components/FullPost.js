@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
 
 export class FullPost extends Component {
-  constructor() {
-    super()
-    this.post = {}
+  // constructor() {
+  //   super()
+  //   this.post = {}
+  // }
+
+  state = {
+    post: {}
+  }
+
+  componentDidMount() {
+    this.props.fullPost.forEach(post => {
+      if(post !== undefined) {
+        if (post.title.replace(/ /g, '-').toLowerCase() === window.location.pathname.slice(7)) {
+          this.setState({ post })
+          console.log(this.state)
+        }
+      }
+    })
   }
   
   render() {
-    this.props.fullPost.forEach(post => {
-      if (post.url === window.location.pathname) {
-        this.post = post
-      }
-    })
-    const { title, body, img } = this.post;
+    const { title, body, img } = this.state.post;
     return (
       <div>
         <img src={ img } alt={ title } />

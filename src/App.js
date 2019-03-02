@@ -40,7 +40,7 @@ class App extends Component {
     fetch('http://localhost:80/test/', { method: 'POST', body: formData })
       .then(response => response.json())
       .then(response => this.setState({ posts: this.state.posts.concat(response) }))
-      .then(() => this.setState(this.state.posts.map(post => post.url = '/posts/' + post.title.replace(/ /g, '-').toLowerCase())))
+      // .then(() => this.setState(this.state.posts.map(post => post.url = '/posts/' + post.title.replace(/ /g, '-').toLowerCase())))
       // .then(() => console.log(this.state.posts))
   }
 

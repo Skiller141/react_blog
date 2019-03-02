@@ -26,8 +26,8 @@ export class Post extends Component {
         <div style={ postBottomStyle }>
           {/* {console.log(this.props.post)} */}
           <Link 
-            // to={'/posts/' + title.replace(/ /g, '-').toLowerCase()}  
-            to={ this.url }  
+            to={'/posts/' + title.replace(/ /g, '-').toLowerCase()}  
+            // to={ this.url }  
             style={ postButtonStyle }
           >
             More
